@@ -36,24 +36,27 @@ function operate (operator, num1, num2) {
 }
 
 function appendDisplay (text) {
+  if (operators.includes(text)) {
+    currentOperator = text;
+    leftOperand = displyArea.textContent;
+
+  } else if (text === "AC") {
+    displayValue = displyArea.textContent = "";
+    return;
+
+  }
   displayValue = displyArea.textContent += text;
 }
 
 const displyArea = document.querySelector("#display textarea");
-const allButtons = document.querySelectorAll(".container button")
-// const operators = document.querySelectorAll("#operators button");
-// const numberButtons = document.querySelectorAll("#num-buttons button");
+const allButtons = document.querySelectorAll(".container button");
 
+const operators = ["+", "-", "*", "/"];
 let displayValue;
+let leftOperand;
+let rightOperand;
+let currentOperator;
 
 for (let btn of allButtons) {
   btn.addEventListener("click", () => appendDisplay(btn.textContent));
 }
-
-// for (let btn of numberButtons) {
-//   btn.addEventListener("click", () => appendDisplay(btn.textContent));
-// }
-
-// for (let btn of operators) {
-//   btn.addEventListener("click", () => appendDisplay(btn.textContent));
-// }
