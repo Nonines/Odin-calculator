@@ -37,35 +37,71 @@ function operate (operator, num1, num2) {
   return solution;
 }
 
-function appendDisplay (input) {
-  let currentSolution = 0;
-  for (let operator of operators) {
-    // If a second operator is inputted, calculate the current expression and update the display with the result.
-    if (displyArea.textContent.includes(operator) && operators.includes(input)) {
-      currentOperator = operator;
-      leftOperand = displyArea.textContent.split(operator)[0];
-      rightOperand = displyArea.textContent.split(operator)[1];
-
-      currentSolution = operate(currentOperator, leftOperand, rightOperand);
-      displyArea.textContent = currentSolution;
-
-      nextOperator = input;
-    }
+function appendNum (input) {
+  if (inputArea.textContent === "0") {
+    inputArea.textContent = input;
+  } else {
+    inputArea.textContent += input;
   }
-
-  displyArea.textContent += input;
 }
 
-const displyArea = document.querySelector("#display textarea");
-const allButtons = document.querySelectorAll(".container button");
+function appendOpr (input) {
+  for (let operator of operators)  {
+    if (inputArea.textContent.includes(operator)) {
+      return;
+    }
+  }
+  inputArea.textContent += input;
+}
+
+function calculate () {
+  for (let operator of operators) {
+    if (inputArea.textContent.includes(operator)) {
+      userValueA = inputArea.textContent.split(operator)[0];
+      userValueB = inputArea.textContent.split(operator)[1];
+      const solution = operate(operator, userValueA, userValueB);
+      exprArea.textContent = solution;
+
+    }
+  }
+}
+
+function clearAll () {
+  inputArea.textContent = 0;
+  exprArea.textContent = "";
+}
+
+function clearOne () {
+  const text = inputArea.textContent;
+  inputArea.textContent = text.substring(0, text.length - 1);
+}
+
+const inputArea = document.querySelector("#display #expression-display");
+inputArea.textContent = 0;
+const exprArea = document.querySelector("#display #input-display");
+const numButtons = document.querySelectorAll(".container #num-buttons button");
+const oprButtons = document.querySelectorAll(".container #operators button");
+const eqlButton = document.querySelector("#equals");
+const clearAllButton = document.querySelector("#clear-all");
+const clearOneButton = document.querySelector("#clear-one");
 
 const operators = ["+", "-", "*", "/"];
 // let displayValue;
-let leftOperand;
-let rightOperand;
+let userValueA;
+let userValueB;
 let currentOperator;
 let nextOperator;
 
-for (let btn of allButtons) {
-  btn.addEventListener("click", () => appendDisplay(btn.textContent));
+for (let btn of numButtons) {
+  btn.addEventListener("click", () => appendNum(btn.textContent));
 }
+
+for (let btn of oprButtons) {
+  btn.addEventListener("click", () => appendOpr(btn.textContent));
+}
+
+eqlButton.addEventListener("click", calculate);
+
+clearAllButton.addEventListener("click", clearAll);
+
+clearOneButton.addEventListener("click", clearOne);
