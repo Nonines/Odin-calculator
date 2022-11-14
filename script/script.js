@@ -77,16 +77,15 @@ function clearOne () {
 }
 
 const inputArea = document.querySelector("#display #expression-display");
-inputArea.textContent = 0;
 const exprArea = document.querySelector("#display #input-display");
-const numButtons = document.querySelectorAll(".container #num-buttons button");
-const oprButtons = document.querySelectorAll(".container #operators button");
+const numButtons = document.querySelectorAll(".num-button");
+const oprButtons = document.querySelectorAll(".operator");
 const eqlButton = document.querySelector("#equals");
 const clearAllButton = document.querySelector("#clear-all");
 const clearOneButton = document.querySelector("#clear-one");
 
 const operators = ["+", "-", "*", "/"];
-// let displayValue;
+inputArea.textContent = 0;
 let userValueA;
 let userValueB;
 let currentOperator;
