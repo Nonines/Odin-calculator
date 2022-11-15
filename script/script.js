@@ -46,8 +46,12 @@ function appendNum (input) {
 }
 
 function appendOpr (input) {
-  for (let operator of operators)  {
-    if (inputArea.textContent.includes(operator)) {
+  for (let opr of operators)  {
+    if (inputArea.textContent.includes(opr)) {
+      if (opr === inputArea.textContent[inputArea.textContent.length - 1]) {
+        return;
+      }
+    } else if (inputArea.textContent === "") {
       return;
     }
   }
@@ -60,15 +64,15 @@ function calculate () {
       userValueA = inputArea.textContent.split(operator)[0];
       userValueB = inputArea.textContent.split(operator)[1];
       const solution = operate(operator, userValueA, userValueB);
-      exprArea.textContent = solution;
+      solutionArea.textContent = solution;
 
     }
   }
 }
 
 function clearAll () {
-  inputArea.textContent = 0;
-  exprArea.textContent = "";
+  inputArea.textContent = "";
+  solutionArea.textContent = 0;
 }
 
 function clearOne () {
@@ -77,7 +81,7 @@ function clearOne () {
 }
 
 const inputArea = document.querySelector("#display #expression-display");
-const exprArea = document.querySelector("#display #solution-display");
+const solutionArea = document.querySelector("#display #solution-display");
 const numButtons = document.querySelectorAll(".num-button");
 const oprButtons = document.querySelectorAll(".operator");
 const eqlButton = document.querySelector("#equals");
@@ -85,7 +89,8 @@ const clearAllButton = document.querySelector("#clear-all");
 const clearOneButton = document.querySelector("#clear-one");
 
 const operators = ["+", "-", "x", "÷"];
-inputArea.textContent = 0;
+solutionArea.textContent = 0;
+inputArea.textContent = "";
 let userValueA;
 let userValueB;
 let currentOperator;

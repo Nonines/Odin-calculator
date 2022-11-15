@@ -8,8 +8,14 @@ body {
     background-color: #ffeef1;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+}
+
+h3 {
+    color: #fd9671;
+    font-family: monospace;
 }
 
 .container {
@@ -118,4 +124,17 @@ button:active {
 
 #btn-0 {
     grid-column-start: 2;
+}
+
+#footer {
+    font-size: smaller;
+}
+
+#footer a {
+    text-decoration: none;
+    color: #fd9671;
+}
+
+#footer a:hover {
+    text-decoration: underline;
 }
