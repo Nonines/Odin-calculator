@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: monospace;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -64,9 +64,15 @@ button {
     border: none;
     background-color: #fff;
     padding: 0;
+    border: 1px solid #fff;
+    border-radius: 8px;
     font-size: larger;
     font-weight: 500;
     color: #535151;
+}
+
+button:active {
+    border: 1px solid grey;
 }
 
 .buttons #divide {
@@ -96,6 +102,10 @@ button {
 
     background-color: #ffeef1;
     color: #eb95a4;
+}
+
+.buttons #clear-one {
+    color: coral;
 }
 
 #btn-1, #btn-2, #btn-3 {

@@ -26,10 +26,10 @@ function operate (operator, num1, num2) {
     case "-":
       solution = subtract(num1, num2);
       break;
-    case "/":
+    case "÷":
       solution = divide(num1, num2);
       break;
-    case "*":
+    case "x":
       solution = multiply(num1, num2);
       break;
   }
@@ -84,7 +84,7 @@ const eqlButton = document.querySelector("#equals");
 const clearAllButton = document.querySelector("#clear-all");
 const clearOneButton = document.querySelector("#clear-one");
 
-const operators = ["+", "-", "*", "/"];
+const operators = ["+", "-", "x", "÷"];
 inputArea.textContent = 0;
 let userValueA;
 let userValueB;
