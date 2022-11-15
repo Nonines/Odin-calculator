@@ -77,7 +77,7 @@ function clearOne () {
 }
 
 const inputArea = document.querySelector("#display #expression-display");
-const exprArea = document.querySelector("#display #input-display");
+const exprArea = document.querySelector("#display #solution-display");
 const numButtons = document.querySelectorAll(".num-button");
 const oprButtons = document.querySelectorAll(".operator");
 const eqlButton = document.querySelector("#equals");
