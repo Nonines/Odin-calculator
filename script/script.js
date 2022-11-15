@@ -59,11 +59,11 @@ function appendOpr (input) {
 }
 
 function calculate () {
-  for (let operator of operators) {
-    if (inputArea.textContent.includes(operator)) {
-      userValueA = inputArea.textContent.split(operator)[0];
-      userValueB = inputArea.textContent.split(operator)[1];
-      const solution = operate(operator, userValueA, userValueB);
+  for (let opr of operators) {
+    if (inputArea.textContent.includes(opr) && opr !== inputArea.textContent[inputArea.textContent.length - 1]) {
+      userValueA = inputArea.textContent.split(opr)[0];
+      userValueB = inputArea.textContent.split(opr)[1];
+      const solution = operate(opr, userValueA, userValueB);
       solutionArea.textContent = solution;
 
     }
