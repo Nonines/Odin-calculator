@@ -46,34 +46,48 @@ function appendNum (input) {
 }
 
 function appendOpr (input) {
+
+  // Don't append operator if input area is empty
   if (inputArea.textContent === "") {
     return;
+
+    // Attempt to evaluate current inputted values before appending operator
   } else if (calculate()) {
     inputArea.textContent = solutionArea.textContent;
+    inputArea.textContent += input;
+    return;
+
+    // Don't append if the last character inputted was an operator
+  } else if (operators.includes(inputArea.textContent[inputArea.textContent.length - 1]))  {
+    return;
+
+    // Append the inputted operator if the previous clauses are false
   } else {
-    for (let opr of operators) {
-      const text = inputArea.textContent;
-      if (text.includes(opr) && opr !== text[text.length - 1]) {
-        inputArea.textContent += input;
-        return;
-      }
-    }
+    inputArea.textContent += input;
   }
-  inputArea.textContent += input;
 }
 
 function calculate () {
   for (let opr of operators) {
-    if (inputArea.textContent.includes(opr) && opr !== inputArea.textContent[inputArea.textContent.length - 1]) {
+
+    // Only attempt to evaluate when there are operators present but the last character is not an operator
+    if (inputArea.textContent.includes(opr) && operators.includes(inputArea.textContent[inputArea.textContent.length - 1]) === false) {
 
       userValueA = inputArea.textContent.split(opr)[0];
       userValueB = inputArea.textContent.split(opr)[1];
 
-      if (inputArea.textContent[0] === "-") {
+      // If the first operand is negative, adjust splitting logic to accomodate
+      if (inputArea.textContent[0] === "-" && opr === "-") {
         userValueA = "-" + inputArea.textContent.split(opr)[1];
         userValueB = inputArea.textContent.split(opr)[2];
       }
 
+      // Quit evaluation if any of the operands remain undefined
+      if (!userValueB || !userValueA) {
+        return false;
+      }
+
+      // Otherwise call the operate function and display the result on the screen
       const solution = operate(opr, userValueA, userValueB);
       solutionArea.textContent = solution;
       return true;
@@ -99,7 +113,7 @@ const eqlButton = document.querySelector("#equals");
 const clearAllButton = document.querySelector("#clear-all");
 const clearOneButton = document.querySelector("#clear-one");
 
-const operators = ["+", "-", "x", "÷"];
+const operators = ["+", "x", "÷", "-"];
 
 solutionArea.textContent = 0;
 inputArea.textContent = "";
