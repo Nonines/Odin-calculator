@@ -78,7 +78,11 @@ button {
 }
 
 button:active {
-    border: 1px solid grey;
+    border: 1px solid #cb9989;
+}
+
+.buttons .operator {
+    color: #cb9989;
 }
 
 .buttons #divide {
@@ -110,7 +114,7 @@ button:active {
     color: #eb95a4;
 }
 
-.buttons #clear-one {
+.buttons #clear-one, .buttons #clear-all {
     color: coral;
 }
 

@@ -34,7 +34,7 @@ function operate (operator, num1, num2) {
       break;
   }
 
-  return solution;
+  return Number(solution.toFixed(3));
 }
 
 function appendNum (input) {
@@ -65,8 +65,15 @@ function appendOpr (input) {
 function calculate () {
   for (let opr of operators) {
     if (inputArea.textContent.includes(opr) && opr !== inputArea.textContent[inputArea.textContent.length - 1]) {
+
       userValueA = inputArea.textContent.split(opr)[0];
       userValueB = inputArea.textContent.split(opr)[1];
+
+      if (inputArea.textContent[0] === "-") {
+        userValueA = "-" + inputArea.textContent.split(opr)[1];
+        userValueB = inputArea.textContent.split(opr)[2];
+      }
+
       const solution = operate(opr, userValueA, userValueB);
       solutionArea.textContent = solution;
       return true;
@@ -93,12 +100,12 @@ const clearAllButton = document.querySelector("#clear-all");
 const clearOneButton = document.querySelector("#clear-one");
 
 const operators = ["+", "-", "x", "÷"];
+
 solutionArea.textContent = 0;
 inputArea.textContent = "";
+
 let userValueA;
 let userValueB;
-let currentOperator;
-let nextOperator;
 
 for (let btn of numButtons) {
   btn.addEventListener("click", () => appendNum(btn.textContent));
