@@ -114,6 +114,11 @@ button:active {
     color: #eb95a4;
 }
 
+.buttons #decimal {
+    grid-column-start: 1;
+    grid-row-start: 5;
+}
+
 .buttons #clear-one, .buttons #clear-all {
     color: coral;
 }
