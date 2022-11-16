@@ -46,13 +46,17 @@ function appendNum (input) {
 }
 
 function appendOpr (input) {
-  for (let opr of operators)  {
-    if (inputArea.textContent.includes(opr)) {
-      if (opr === inputArea.textContent[inputArea.textContent.length - 1]) {
+  if (inputArea.textContent === "") {
+    return;
+  } else if (calculate()) {
+    inputArea.textContent = solutionArea.textContent;
+  } else {
+    for (let opr of operators) {
+      const text = inputArea.textContent;
+      if (text.includes(opr) && opr !== text[text.length - 1]) {
+        inputArea.textContent += input;
         return;
       }
-    } else if (inputArea.textContent === "") {
-      return;
     }
   }
   inputArea.textContent += input;
@@ -65,7 +69,7 @@ function calculate () {
       userValueB = inputArea.textContent.split(opr)[1];
       const solution = operate(opr, userValueA, userValueB);
       solutionArea.textContent = solution;
-
+      return true;
     }
   }
 }
