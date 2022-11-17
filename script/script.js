@@ -105,6 +105,30 @@ function clearOne () {
   inputArea.textContent = text.substring(0, text.length - 1);
 }
 
+function addDecimal() {
+  const text = inputArea.textContent;
+  if (operators.includes(text[text.length - 1]) || text[text.length - 1] === ".") {
+    return;
+  }
+
+  for (let opr of operators) {
+    if (text.includes(opr)) {
+      let operands = text.split(opr);
+      for (let char of operands) {
+        if (char.split(".").length < 2) {
+          inputArea.textContent += ".";
+          return;
+        }
+      }
+
+    } else if (text.includes(".")) {
+      return;
+    }
+  }
+
+  inputArea.textContent += ".";
+}
+
 const inputArea = document.querySelector("#display #expression-display");
 const solutionArea = document.querySelector("#display #solution-display");
 const numButtons = document.querySelectorAll(".num-button");
@@ -112,6 +136,7 @@ const oprButtons = document.querySelectorAll(".operator");
 const eqlButton = document.querySelector("#equals");
 const clearAllButton = document.querySelector("#clear-all");
 const clearOneButton = document.querySelector("#clear-one");
+const decimalButton = document.querySelector("#decimal");
 
 const operators = ["+", "x", "÷", "-"];
 
@@ -120,6 +145,7 @@ inputArea.textContent = "";
 
 let userValueA;
 let userValueB;
+let decimalIsValid = true;
 
 for (let btn of numButtons) {
   btn.addEventListener("click", () => appendNum(btn.textContent));
@@ -134,3 +160,5 @@ eqlButton.addEventListener("click", calculate);
 clearAllButton.addEventListener("click", clearAll);
 
 clearOneButton.addEventListener("click", clearOne);
+
+decimalButton.addEventListener("click", addDecimal);
