@@ -107,25 +107,36 @@ function clearOne () {
 
 function addDecimal() {
   const text = inputArea.textContent;
+
+  // If the last inputted character is a decimal/operator, stop the function
   if (operators.includes(text[text.length - 1]) || text[text.length - 1] === ".") {
     return;
   }
 
+  // If there's an operator in the display
   for (let opr of operators) {
     if (text.includes(opr)) {
+
+      // Split the expression by the operator
       let operands = text.split(opr);
       for (let char of operands) {
+
+        // And then check if there's an already inputted decimal in each operand by splitting with "."
         if (char.split(".").length < 2) {
+
+          // If an operand without a decimal exists, then append a decimal to the screen
           inputArea.textContent += ".";
           return;
         }
       }
 
+      // If there is no operator and there's already a decimal, stop the function
     } else if (text.includes(".")) {
       return;
     }
   }
 
+  // If the other checks don't end the function, add a decimal
   inputArea.textContent += ".";
 }
 
