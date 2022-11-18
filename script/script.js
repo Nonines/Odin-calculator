@@ -70,6 +70,8 @@ function appendOpr (input) {
 }
 
 function calculate () {
+  let userValueA;
+  let userValueB;
   for (let opr of operators) {
 
     // Only attempt to evaluate when there are operators present but the last character is not an operator
@@ -139,7 +141,6 @@ function appendDecimal() {
     }
   }
 
-
   if (text.includes("-") || text.includes("+") || text.includes("÷") || text.includes("x")) {
     // pass
   } else if (text.includes(".")) {
@@ -164,10 +165,6 @@ const operators = ["+", "x", "÷", "-"];
 
 solutionArea.textContent = 0;
 inputArea.textContent = "";
-
-let userValueA;
-let userValueB;
-let decimalIsValid = true;
 
 for (let btn of numButtons) {
   btn.addEventListener("click", () => appendNum(btn.textContent));
