@@ -40,6 +40,8 @@ function operate (operator, num1, num2) {
 function appendNum (input) {
   if (inputArea.textContent === "0") {
     inputArea.textContent = input;
+  } else if (inputArea.textContent.length > 18) {
+    return;
   } else {
     inputArea.textContent += input;
   }
@@ -90,6 +92,11 @@ function calculate () {
       // Otherwise call the operate function and display the result on the screen
       const solution = operate(opr, userValueA, userValueB);
       solutionArea.textContent = solution;
+      if (solutionArea.textContent.length > 11) {
+        solutionArea.classList.add("small-text");
+      } else {
+        solutionArea.classList.remove("small-text");
+      }
       return true;
     }
   }
@@ -105,7 +112,7 @@ function clearOne () {
   inputArea.textContent = text.substring(0, text.length - 1);
 }
 
-function addDecimal() {
+function appendDecimal() {
   const text = inputArea.textContent;
 
   // If the last inputted character is a "."/operator, stop the function
@@ -176,4 +183,4 @@ clearAllButton.addEventListener("click", clearAll);
 
 clearOneButton.addEventListener("click", clearOne);
 
-decimalButton.addEventListener("click", addDecimal);
+decimalButton.addEventListener("click", appendDecimal);
