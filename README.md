@@ -9,6 +9,6 @@ This is my attempt at Project: [Calculator](https://www.theodinproject.com/lesso
 *  CSS Grid and Flex.
 * [Live preview](https://nonines.github.io/Odin-calculator/)
 
-## Images
-![](/images/Calc-scr-1.png)
-![](/images/Calc-scr-2.png)
+## Screenshots
+![](./images/scr-1.png)
+![](./images/scr-2.png)
