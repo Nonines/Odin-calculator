@@ -49,14 +49,21 @@ function appendNum (input) {
 
 function appendOpr (input) {
 
-  // Don't append operator if input area is empty
-  if (inputArea.textContent === "") {
-    return;
+  // Append if input is minus, if the input area is empty
+  if (inputArea.textContent === "" && input === "-") {
+    inputArea.textContent += input;
+
+    // Append if input is minus, if last input was multiply or divide
+  } else if (input === "-" && ["x", "÷"].includes(inputArea.textContent[inputArea.textContent.length - 1])) {
+    inputArea.textContent += input;
 
     // Attempt to evaluate current inputted values before appending operator
   } else if (calculate()) {
     inputArea.textContent = solutionArea.textContent;
     inputArea.textContent += input;
+
+    // Don't append if input area is empty
+  } else if (inputArea.textContent === "") {
     return;
 
     // Don't append if the last character inputted was an operator
@@ -133,7 +140,7 @@ function appendDecimal() {
       }
 
       // If there's more than one ".", stop the functional
-      if (RightOperand.split(".").length === 2) {
+      if (RightOperand && RightOperand.split(".").length === 2) {
         return;
       } else {
         break;
